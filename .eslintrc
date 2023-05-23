@@ -1,0 +1,21 @@
+{
+  "env": { "browser": true, "es6": true, "node": true },
+  "extends": ["eslint:recommended", "airbnb", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": ["off"], //jsx에서 spread 문법 사용유무 설정
+    "no-nested-ternary": "off", // 중첩 삼항 연산자 사용 가능 설정
+    "react/prop-types": 0, // props의 타입 지정 옵션 삭제
+    "react/forbid-prop-types": 0, // // prop types 지정시 object type 설정 안되는부분 사용가능하도록 설정
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  }
+}
