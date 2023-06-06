@@ -8,13 +8,18 @@ import mediaQuery from '../../utils/breakPointUI';
 import validation from '../../utils/validation';
 import loginSuccess from '../../utils/auth/loginSuccess';
 
+interface IFormInput {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, errors }
-  } = useForm({ mode: 'onBlur' });
+  } = useForm<IFormInput>({ mode: 'onBlur' });
 
   // 로그인시 처리 로직
   const onSubmit = async (value) => {
@@ -34,14 +39,12 @@ export default function Login() {
       <LoginTitle>로그인</LoginTitle>
       <LoginForm onSubmit={handleSubmit(onSubmit)}>
         <LoginInputBox
-          name="email"
           placeholder="email"
           aria-invalid={!isDirty ? undefined : errors.email ? 'true' : 'false'}
           {...register('email', validation.email)}
         />
         {errors.email && <AlertSmall>{errors.email.message}</AlertSmall>}
         <LoginInputBox
-          name="password"
           type="password"
           placeholder="password"
           aria-invalid={!isDirty ? undefined : errors.password ? 'true' : 'false'}

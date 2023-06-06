@@ -3,7 +3,14 @@ import styled from '@emotion/styled';
 import PropsTypes from 'prop-types';
 import mediaQuery from '../../utils/breakPointUI';
 
-export default function ModalOneButton({ title, buttonDescription, onClick, infoContent }) {
+interface ModalProps {
+  title?: string;
+  buttonDescription?: string;
+  onClick?: () => void;
+  infoContent?: string;
+}
+
+export default function ModalOneButton({ title, buttonDescription, onClick, infoContent }: ModalProps) {
   const [isDht, setIsDht] = useState(false);
 
   useEffect(() => {

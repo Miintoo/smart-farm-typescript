@@ -21,7 +21,7 @@ export default function Router() {
         <Route path="/change/password" element={<ChangePassword />} />
         <Route path="/change/userinfo" element={<ChangeUserInfo />} />
         <Route path="/signout" element={<SignOut />} />
-        <Route path="/register" exact element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/dht" element={<DHTInfo />} />
         <Route path="/soil" element={<SoilInfo />} />
         <Route path="/lux" element={<CDSInfo />} />

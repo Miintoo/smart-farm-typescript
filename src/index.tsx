@@ -7,7 +7,7 @@ import './styles/global.css';
 axios.defaults.baseURL = 'https://reactjs.kr/api';
 axios.defaults.withCredentials = true;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <Router />

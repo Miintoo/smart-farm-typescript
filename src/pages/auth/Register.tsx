@@ -7,6 +7,14 @@ import mediaQuery from '../../utils/breakPointUI';
 import validation from '../../utils/validation';
 import ModalOneButton from '../../components/common/ModalOneButton';
 
+interface IFormInput {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  name: string;
+  phone: string;
+}
+
 export default function Register() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +23,7 @@ export default function Register() {
     handleSubmit,
     formState: { isSubmitting, isDirty, errors },
     getValues
-  } = useForm({ mode: 'onBlur' });
+  } = useForm<IFormInput>({ mode: 'onBlur' });
 
   const onSubmit = async (data) => {
     const { passwordConfirm, ...filterData } = data;
@@ -40,7 +48,6 @@ export default function Register() {
           <InputLabel htmlFor="email">이메일</InputLabel>
           <InputEmailBox
             id="email"
-            name="email"
             aria-invalid={!isDirty ? undefined : errors.email ? 'true' : 'false'}
             {...register('email', validation.email)}
           />
@@ -49,7 +56,6 @@ export default function Register() {
           <InputLabel htmlFor="password">비밀번호</InputLabel>
           <InputBox
             id="password"
-            name="password"
             type="password"
             aria-invalid={!isDirty ? undefined : errors.password ? 'true' : 'false'}
             {...register('password', validation.password)}
