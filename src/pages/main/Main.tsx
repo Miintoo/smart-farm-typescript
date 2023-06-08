@@ -9,12 +9,30 @@ import ModalOneButton from '../../components/common/ModalOneButton';
 import mediaQuery from '../../utils/breakPointUI';
 import ModalAddDevice from '../../components/main/ModalAddDevice';
 
-export default function Main() {
+interface ModalState {
+  errorAlert: boolean;
+  addAlert: boolean;
+}
+
+interface UsersData {
+  name: string;
+  phone: string;
+  email: string;
+  deleted_at: string;
+}
+
+interface DeviceData {
+  deviceId: number;
+  name: string;
+  status: number;
+}
+
+export default function Main(): JSX.Element {
   const navigate = useNavigate();
-  const [users, setUsers] = useState({});
-  const [devices, setDevices] = useState([]);
+  const [users, setUsers] = useState<UsersData | {}}>({});
+  const [devices, setDevices] = useState<DeviceData[]>([]);
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState({
+  const [isOpen, setIsOpen] = useState<ModalState>({
     errorAlert: false,
     addAlert: false
   });
@@ -32,8 +50,8 @@ export default function Main() {
 
   const takeDevice = async () => {
     try {
-      const response = await instance.get('/devices');
-      setDevices([...devices, ...response.data.data]);
+      const { data: data } = await instance.get('/devices');
+      setDevices([...devices, ...data]);
     } catch (error) {
       Error('디바이스를 불러올 수 없습니다.');
     }

@@ -15,7 +15,7 @@ interface IFormInput {
   phone: string;
 }
 
-export default function Register() {
+export default function Register(): JSX.Element {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -25,7 +25,7 @@ export default function Register() {
     getValues
   } = useForm<IFormInput>({ mode: 'onBlur' });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: IFormInput) => {
     const { passwordConfirm, ...filterData } = data;
     try {
       await axios.post('/register', filterData);

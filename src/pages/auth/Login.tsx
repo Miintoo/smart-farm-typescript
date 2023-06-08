@@ -13,7 +13,7 @@ interface IFormInput {
   password: string;
 }
 
-export default function Login() {
+export default function Login(): JSX.Element {
   const navigate = useNavigate();
   const {
     register,
@@ -22,7 +22,7 @@ export default function Login() {
   } = useForm<IFormInput>({ mode: 'onBlur' });
 
   // 로그인시 처리 로직
-  const onSubmit = async (value) => {
+  const onSubmit = async (value: IFormInput) => {
     try {
       const {
         data: { auth }
